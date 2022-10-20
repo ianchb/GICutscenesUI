@@ -380,6 +380,7 @@ def start_work(files, args):
 					if STOPED_BY_USER: break
 					else:
 						audio_index = int(args['audio_index'])
+						hard_acc = args['hard_acc']
 						audio_file = os.path.join(OUTPUT_F , str(old_file_name) + "_" + str(audio_index) + ".wav")
 						output_file = os.path.join(OUTPUT_F, str(old_file_name) + ".mp4")
 
@@ -444,7 +445,12 @@ def start_work(files, args):
 							'-b:a', '192K',
 							output_file
 						]
-
+						if (hard_acc == 'nvidia_nvenc'):
+							command += ["-c:v", 'h264_nvenc']
+						elif (hard_acc == 'intel_qsv'):
+							command += ["-c:v", 'h264_qsv']
+						elif (hard_acc == 'amd_amf'):
+							command += ["-c:v", 'h264_amf']
 						if CONSOLE_DEBUG_MODE:
 							subprocess.call(command)
 						else:
