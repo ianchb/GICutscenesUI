@@ -28,7 +28,7 @@ jobs:
         pip install Eel JSON_minify pysrt pywin32 Requests pyinstaller
     - name: Set up ffmpeg
       run: |
-        Invoke-WebRequest -Uri "https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-essentials.7z" -OutFile ./ffmpeg.7z
+        Invoke-WebRequest -Uri "https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z" -OutFile ./ffmpeg.7z
         7z e ffmpeg.7z */bin/ffmpeg.exe
     - name: Set up GICutscenes
       run: |
